@@ -1,17 +1,14 @@
 import type { NextConfig } from "next";
 
-const repositoryName = process.env.GITHUB_REPOSITORY?.split("/")[1];
-const isProjectPage =
-  process.env.GITHUB_ACTIONS === "true" &&
-  Boolean(repositoryName) &&
-  !repositoryName?.endsWith(".github.io");
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+const normalizedBasePath = basePath === "/" ? "" : basePath.replace(/\/$/, "");
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   output: "export",
   trailingSlash: true,
-  basePath: isProjectPage ? `/${repositoryName}` : undefined,
-  assetPrefix: isProjectPage ? `/${repositoryName}/` : undefined,
+  basePath: normalizedBasePath || undefined,
+  assetPrefix: normalizedBasePath ? `${normalizedBasePath}/` : undefined,
   images: {
     unoptimized: true,
   },
