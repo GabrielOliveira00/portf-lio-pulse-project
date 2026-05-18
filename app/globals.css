@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at top, rgba(133, 231, 255, 0.12), transparent 24%),
+    linear-gradient(180deg, #020817 0%, #07111f 40%, #02050b 100%);
+  color: #eef3f8;
+}
+
+::selection {
+  background: rgba(133, 231, 255, 0.28);
+  color: #f8fbff;
+}
+
+@layer components {
+  .shell {
+    @apply mx-auto w-full max-w-7xl px-6 sm:px-8 lg:px-10;
+  }
+
+  .glass-card {
+    @apply rounded-[28px] border border-white/10 bg-white/5 backdrop-blur-xl;
+  }
+
+  .site-ambient {
+    @apply pointer-events-none fixed inset-0 overflow-hidden;
+  }
+
+  .site-ambient::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 12% 10%, rgba(133, 231, 255, 0.14), transparent 20%),
+      radial-gradient(circle at 82% 16%, rgba(213, 255, 114, 0.1), transparent 16%),
+      radial-gradient(circle at 50% 78%, rgba(255, 141, 109, 0.08), transparent 18%);
+    opacity: 0.95;
+  }
+
+  .site-ambient::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.35), transparent 85%);
+    opacity: 0.25;
+  }
+
+  .section-label {
+    @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-white/65;
+  }
+}
